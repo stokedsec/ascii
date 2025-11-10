@@ -9,7 +9,7 @@ UNICODE = ["█", "█", "▓", "▓", "▒", "▒", "░", "░", "┉", "┉",
 def basicProcess(img, charSet):
 
     # Define vars
-    pixels = img.getData()
+    pixels = img.getdata()
     characters = []
     brightnessFactor = 255/len(charSet)
     formattedString = ""
@@ -17,12 +17,12 @@ def basicProcess(img, charSet):
     # Create raw data
     for pixel in pixels:
         brightnessVal = round(pixel / brightnessFactor)
-        characters.append(charSet[brightnessVal])
+        characters.append(charSet[brightnessVal - 1])
 
     # Organize into rows and columns
     for i in range(1, len(characters) + 1):
         if i % img.width == 0:
             formattedString += "\n"
-        formattedString += characters[i]
+        formattedString += characters[i - 1]
 
     return formattedString
